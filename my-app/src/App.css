@@ -41,18 +41,3 @@
   grid-template-columns: 2fr 10fr;
   grid-gap: 10px;
 }
-
-.header {
-  grid-area: header;
-  border: 2px black solid;
-}
-
-.sidebar {
-  grid-area: nav;
-  background: orange;
-}
-
-.content {
-  grid-area: content;
-  background: green;
-}
