@@ -2,7 +2,7 @@ import React from 'react';
 import classes from './NawBar.module.css';
 import {NavLink} from 'react-router-dom';
 
-const NawBar = () => {
+const NawBar = (props) => {
   return (
         <nav className={classes.sidebar}>
           <div className={classes.item + ' ' + classes.itemActive}>
