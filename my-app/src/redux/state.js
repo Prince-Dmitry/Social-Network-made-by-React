@@ -1,4 +1,5 @@
 import React from 'react';
+import { rerenderEntireTree } from '../render';
 
 let state = {
 	posts: [
@@ -21,6 +22,17 @@ let state = {
 		{id: 2, message: 'Go down'},
 		{id: 3, message: 'Hail Hitler'}
 	]
+}
+
+export let addPost = (postMessage) => {
+	let newPost = {
+		id: 5,
+		message: postMessage,
+		likesCount: 0
+	};
+
+	state.posts.push(newPost);
+	rerenderEntireTree(state);
 }
 
 export default state;
