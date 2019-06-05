@@ -21,7 +21,8 @@ let state = {
 		{id: 1, message: 'Hi'},
 		{id: 2, message: 'Go down'},
 		{id: 3, message: 'Hail Hitler'}
-	]
+	],
+	newPostText: 'it-ne-pizdi'
 }
 
 export let addPost = (postMessage) => {
@@ -32,6 +33,11 @@ export let addPost = (postMessage) => {
 	};
 
 	state.posts.push(newPost);
+	rerenderEntireTree(state);
+}
+
+export let updateNewPostText = (newText) => {
+	state.newPostText = newText;
 	rerenderEntireTree(state);
 }
 
