@@ -1,6 +1,22 @@
 import React from 'react';
 import classes from './MyPosts.module.css';
 import Post from './Post/Post';
+import {addPostActionCreator, updateNewPostTextCreator} from "../../../redux/state";
+
+
+/*
+let addPostActionCreator = () => {
+    return {
+      type: 'ADD-POST'
+    }
+}
+
+let updateNewPostTextCreator = (text) => {
+    return {
+      type: 'UPDATE-NEW-POST-TEXT', newText: text}
+}
+*/
+
 
 const MyPosts = (props) => {
 /*
@@ -21,13 +37,14 @@ const MyPosts = (props) => {
     // let text = newPostElement.current.value;
     // props.addPost(text);
     // newPostElement.current.value = " ";
-    props.dispatch( {type : 'ADD-POST'} );
+    props.dispatch( addPostActionCreator() );
   }
 
   let onPostChange = () => {
     let text = newPostElement.current.value;
-    props.dispatch( {type: 'UPDATE-NEW-POST-TEXT', newText: {text}} );
-
+    //props.dispatch( {type: 'UPDATE-NEW-POST-TEXT', newText: {text}} );
+    let action = updateNewPostTextCreator(text);
+    props.dispatch(action);
   }
 
   return (<div className="classes.postBlock">
