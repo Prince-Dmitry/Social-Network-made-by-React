@@ -11,7 +11,7 @@ import { subscribe } from './redux/state';
 //addPost('Nasvai team');
 
 export let rerenderEntireTree = (state) => {
-	ReactDOM.render(<App AppState={ state } dispatch={store.dispatch.bind(store)}/>, document.getElementById('root'));
+	ReactDOM.render(<App AppState={ state } dispatch={store.dispatch.bind(store)} store={store}/>, document.getElementById('root'));
 }
 
 // If you want your app to work offline and load faster, you can change

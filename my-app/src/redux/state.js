@@ -3,6 +3,8 @@ import React from 'react';
 
 const ADD_POST = "ADD-POST";
 const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
+const UPDATE_NEW_MESSAGE_BODY = "UPDATE-NEW-MESSAGE-BODY";
+const SEND_MESSAGE = "SEND-MESSAGE";
 
 let store = {
 		_state: {
@@ -26,6 +28,7 @@ let store = {
 				{id: 2, message: 'Go down'},
 				{id: 3, message: 'Hail Hitler'}
 			],
+			newMessageBody: '',
 			newPostText: 'it-ne-pizdi'
 		},
 
@@ -33,13 +36,14 @@ let store = {
 			return this._state;
 		},
 
-		rerenderEntireTree() {
-			console.log('State is changind');
+		_callSubscriber() {
+			console.log('State is changed');
 		},
 
 		subscribe (observer) {
-			this.rerenderEntireTree = observer;
+			this._callSubscriber = observer;
 		},
+
 
 		dispatch (action) {
 			if (action.type === ADD_POST) {
@@ -50,17 +54,29 @@ let store = {
 				};
 				this._state.posts.push(newPost);
 				this._state.newPostText = '';
-				this.rerenderEntireTree(this._state);
+				this._callSubscriber(this._state);
 			} else if (action.type === UPDATE_NEW_POST_TEXT) {
 				this._state.newPostText = action.newText;
-				this.rerenderEntireTree(this._state);
+				this._callSubscriber(this._state);
+			} else if (action.type === UPDATE_NEW_MESSAGE_BODY) {
+				this._state.newMessageBody = action.body;
+				this._callSubscriber(this._state);
+			} else if (action.type === SEND_MESSAGE) {
+				let body = this._state.newMessageBody;
+				this._state.newMessageBody = "";
+				this._state.messageData.push({id: 6, message: body});
+				this._callSubscriber(this._state);
 			}
-		}
+		} 
 }
 
-export let addPostActionCreator = () => ({type: ADD_POST})
+export let addPostActionCreator = () => ({type: ADD_POST});
 
-export let updateNewPostTextCreator = (text) => ({type: UPDATE_NEW_POST_TEXT, newText: text})
+export let updateNewPostTextCreator = (text) => ({type: UPDATE_NEW_POST_TEXT, newText: text});
+
+export let sendMessageCreator = () => ({type: SEND_MESSAGE});
+
+export let updateNewMessageBodyCreator = (bod) => ({type: UPDATE_NEW_MESSAGE_BODY, body: bod});
 
 export default store;
 window.store = store;

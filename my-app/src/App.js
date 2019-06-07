@@ -17,7 +17,8 @@ const App = (props) => {
           <div className='app-wrapper-content'>
             <Route path='/dialogs' render={ () => <Dialogs 
               dialogsData={props.AppState.dialogsData} 
-              messageData={props.AppState.messageData}/> } />
+              messageData={props.AppState.messageData}
+              store={props.store}/> } />
 
             <Route path='/profile' render={ () => <Profile 
               posts={props.AppState.posts} 
