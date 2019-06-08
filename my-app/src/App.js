@@ -15,15 +15,9 @@ const App = (props) => {
           <Header />
           <NawBar />
           <div className='app-wrapper-content'>
-            <Route path='/dialogs' render={ () => <Dialogs 
-              dialogsData={props.AppState.dialogsData} 
-              messageData={props.AppState.messageData}
-              store={props.store}/> } />
+            <Route path='/dialogs' render={ () => <Dialogs store={props.store} /> } />
 
-            <Route path='/profile' render={ () => <Profile 
-              posts={props.AppState.posts} 
-              dispatch={props.dispatch} 
-              newPostText={props.newPostText} /> } />
+            <Route path='/profile' render={ () => <Profile store={props.store} /> } />
           </div>
         </div>
       </div>

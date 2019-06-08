@@ -13,12 +13,12 @@ const Dialogs = (props) => {
 	let newMessageBody = state.newMessageBody;
 
 	let onSendMessageClick = () => {
-		props.store.dispatch(sendMessageCreator());
+		props.sendMessageCreator();
 	}
 
 	let onNewMessageChange = (event) => {
 		let body = event.target.value;
-		props.store.dispatch(updateNewMessageBodyCreator(body));
+		props.updateNewMessageBodyCreator(body);
 	}
 
 	 return(<div className={classes.dialogs}>
